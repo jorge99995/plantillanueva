@@ -9,6 +9,7 @@ mix.js("resources/js/app.js", "public/js")
             "resources/assets/css/demo.css",
             "resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css",
             "resources/assets/vendor/libs/apex-charts/apex-charts.css",
+            "resources/assets/vendor/css/pages/page-auth.css"
 
         ],
         "public/css/plantilla.css"

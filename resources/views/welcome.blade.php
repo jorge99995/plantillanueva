@@ -13,9 +13,11 @@
     <div class="layout-wrapper layout-content-navbar" id="app">
             <App></App>
     </div>
-
+    
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/plantilla.js')}}"></script>
 
 </body>
 </html>
+
+

@@ -5,7 +5,6 @@
     >
         <div class="app-brand demo">
             <a href="index.html" class="app-brand-link">
-
                 <span class="app-brand-text demo menu-text fw-bold ms-2"
                     >Esid Peru</span
                 >
@@ -24,12 +23,10 @@
         <ul class="menu-inner py-1">
             <!-- Dashboards -->
             <li class="menu-item active open">
-
-               <router-link to="/" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <router-link to="/" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div data-i18n="Dashboards">Dashboards</div>
-               </router-link>
-
+                </router-link>
             </li>
 
             <li class="menu-header small text-uppercase">
@@ -43,12 +40,10 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a
-                            href="pages-account-settings-account.html"
-                            class="menu-link"
-                        >
+                        <router-link to="/usuarios" class="menu-link">
+
                             <div data-i18n="Account">Lista de Usuarios</div>
-                        </a>
+                        </router-link>
                     </li>
                 </ul>
             </li>
@@ -59,21 +54,19 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-
-                            <a
-                                href="pages-account-settings-account.html"
-                                class="menu-link"
-                            >
-                                <div data-i18n="Account">Lista de Roles</div>
-                            </a>
-
+                        <a
+                            href="pages-account-settings-account.html"
+                            class="menu-link"
+                        >
+                            <div data-i18n="Account">Lista de Roles</div>
+                        </a>
                     </li>
                 </ul>
             </li>
 
-              <!--GESTION DE CATEGORIAS -->
+            <!--GESTION DE CATEGORIAS -->
 
-              <li class="menu-header small text-uppercase">
+            <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">GESTIÓN DE CATEGORIAS</span>
             </li>
 
@@ -100,18 +93,15 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-
-                            <a
-                                href="pages-account-settings-account.html"
-                                class="menu-link"
-                            >
-                                <div data-i18n="Account">Lista de Cursos</div>
-                            </a>
-
+                        <a
+                            href="pages-account-settings-account.html"
+                            class="menu-link"
+                        >
+                            <div data-i18n="Account">Lista de Cursos</div>
+                        </a>
                     </li>
                 </ul>
             </li>
         </ul>
-
     </aside>
 </template>
