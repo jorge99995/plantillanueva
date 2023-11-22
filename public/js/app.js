@@ -19801,7 +19801,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return axios.get("/api/user");
             case 2:
               _context.next = 4;
-              return _context.sent.data.users;
+              return _context.sent.data.users.data;
             case 4:
               _this.USUARIOS = _context.sent;
               console.log(_this.USUARIOS);

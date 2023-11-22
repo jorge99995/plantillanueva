@@ -292,7 +292,7 @@ export default {
 
     methods: {
         async listarUsuarios() {
-            this.USUARIOS = await (await axios.get("/api/user")).data.users;
+            this.USUARIOS = await (await axios.get("/api/user")).data.users.data;
             console.log(this.USUARIOS);
         },
     },
