@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\User\UserGCollection;
 use App\Models\User;
+
+use App\Imports\UsersImport;
+
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Resources\User\UserGCollection;
 
 class UserController extends Controller
 {
@@ -16,8 +20,8 @@ class UserController extends Controller
         $users = User::where("type_user", 2)->orderby("id", "desc")->get();
         return response()->json([
 
-            "users"=>UserGCollection::make($users),
-          
+            "users" => UserGCollection::make($users),
+
         ]);
 
         // return response()->json(
@@ -37,6 +41,17 @@ class UserController extends Controller
         //     ]
         // );
     }
+    public function saveExcelUsers(Request $request)
+    {
+
+        Excel::import(
+            new UsersImport,
+            $request->file('file')->store('file')
+        );
+        return redirect()->back();
+    }
+
+
 
     public function create()
     {

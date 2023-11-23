@@ -21,3 +21,9 @@ use App\Http\Controllers\Admin\UserController;
 
 
 Route::resource('/user', UserController::class);
+
+
+
+
+Route::post('/importuser',[UserController::class,
+            'saveExcelUsers'])->name('import');
