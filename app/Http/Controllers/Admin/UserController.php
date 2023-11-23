@@ -48,8 +48,8 @@ class UserController extends Controller
     //    Excel::import(new UsersImport,$request->file('usuarios'));
 
         $usuarios = (new UsersImport)->toArray($request->file("usuarios"));
+        return response()->json([   'user'=>$usuarios],200);
 
-    //    return 'success';
 
 
     }

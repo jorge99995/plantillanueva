@@ -49,14 +49,16 @@
                                         <input
                                             type="file"
                                             class="form-control"
-                                            id="inputGroupFile04"
+                                            id="usuarios"
+                                            name="usuarios"
                                             aria-describedby="inputGroupFileAddon04"
                                             aria-label="Upload"
                                         />
                                         <button
                                             class="btn btn-outline-primary"
                                             type="button"
-                                            id="inputGroupFileAddon04"
+                                            name="usuarios"
+                                            @click="SaveExcelUser()"
                                         >
                                             <span
                                                 ><i
@@ -435,9 +437,9 @@ export default {
         },
 
         async SaveExcelUser() {
-            const datas = document.getElementsByClassName("file");
 
-            this.IMPORT = await await axios.post("/api/importuser", datas).data;
+
+            this.IMPORT = await await axios.post("/api/importuser");
             console.log(this.IMPORT);
         },
     },
