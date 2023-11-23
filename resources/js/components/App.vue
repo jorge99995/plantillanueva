@@ -14,10 +14,10 @@
     </div>
 </template>
 
-<script setup>
-import Aside from "./Page/Plantilla/Aside.vue";
-import Navbar from "./Page/Plantilla/Navbar.vue";
-import Footer from "./Page/Plantilla/Footer.vue";
+<script >
+import Aside from "./Page/Plantilla/aside.vue";
+import Navbar from "./Page/Plantilla/navbar.vue";
+import Footer from "./Page/Plantilla/footer.vue";
 components: {
     Aside;
     Navbar;

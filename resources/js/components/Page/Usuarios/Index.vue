@@ -15,9 +15,7 @@
                     <div class="dataTables_wrapper dt-bootstrap5 no-footer">
                         <div class="card-header">
                             <div class="head-label text-start col-lg-12">
-                                <h5 class="card-title mb-0">
-                                    LISTA DE USUARIOS
-                                </h5>
+                                <h5 class="card-title mb-0">LISTA DE CURSOS</h5>
                             </div>
                         </div>
 
@@ -43,29 +41,35 @@
                                 </div>
                             </div>
 
-                                <div
+                            <div
                                 class="dt-action-buttons text-end col-lg-8 col-md-6 col-12"
                             >
                                 <div class="dt-buttons">
-
-
                                     <div class="input-group">
                                         <input
-                                          type="file"
-                                          class="form-control"
-                                          id="inputGroupFile04"
-                                          aria-describedby="inputGroupFileAddon04"
-                                          aria-label="Upload" />
-                                        <button class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04"><span
-                                            ><i
-                                                class="bx bx-export me-sm-1"
-                                            ></i>
+                                            type="file"
+                                            class="form-control"
+                                            id="inputGroupFile04"
+                                            aria-describedby="inputGroupFileAddon04"
+                                            aria-label="Upload"
+                                        />
+                                        <button
+                                            class="btn btn-outline-primary"
+                                            type="button"
+                                            id="inputGroupFileAddon04"
+                                        >
                                             <span
-                                                class="d-none d-sm-inline-block"
-                                                >Importar datos</span
-                                            ></span></button>
-                                      </div>
-                                      <br>
+                                                ><i
+                                                    class="bx bx-export me-sm-1"
+                                                ></i>
+                                                <span
+                                                    class="d-none d-sm-inline-block"
+                                                    >Importar datos</span
+                                                ></span
+                                            >
+                                        </button>
+                                    </div>
+                                    <br />
                                     <button
                                         class="dt-button btn btn-primary"
                                         tabindex="0"
@@ -81,7 +85,6 @@
                                     </button>
                                 </div>
                             </div>
-
                         </div>
                         <br />
 
@@ -113,7 +116,7 @@
                                             style="width: 237px"
                                             aria-label="Name: activate to sort column ascending"
                                         >
-                                            NOMBRES Y APELLIDOS
+                                            NOMBRE DEL CURSO
                                         </th>
                                         <th
                                             class="sorting"
@@ -124,7 +127,7 @@
                                             style="width: 225px"
                                             aria-label="Email: activate to sort column ascending"
                                         >
-                                            ROL
+                                            DNI
                                         </th>
                                         <th
                                             class="sorting"
@@ -135,7 +138,7 @@
                                             style="width: 75px"
                                             aria-label="Date: activate to sort column ascending"
                                         >
-                                            Fecha de creacion
+                                            CELULAR
                                         </th>
 
                                         <th
@@ -147,8 +150,56 @@
                                             style="width: 103px"
                                             aria-label="Status: activate to sort column ascending"
                                         >
-                                            ESTADO
+                                            CORREO
                                         </th>
+
+                                        <th
+                                            class="sorting"
+                                            tabindex="0"
+                                            aria-controls="DataTables_Table_0"
+                                            rowspan="1"
+                                            colspan="1"
+                                            style="width: 103px"
+                                            aria-label="Status: activate to sort column ascending"
+                                        >
+                                            CODIGO
+                                        </th>
+
+                                        <th
+                                            class="sorting"
+                                            tabindex="0"
+                                            aria-controls="DataTables_Table_0"
+                                            rowspan="1"
+                                            colspan="1"
+                                            style="width: 103px"
+                                            aria-label="Status: activate to sort column ascending"
+                                        >
+                                            REGISTRO
+                                        </th>
+                                        <th
+                                            class="sorting"
+                                            tabindex="0"
+                                            aria-controls="DataTables_Table_0"
+                                            rowspan="1"
+                                            colspan="1"
+                                            style="width: 103px"
+                                            aria-label="Status: activate to sort column ascending"
+                                        >
+                                            FECHA DE EMISION
+                                        </th>
+
+                                        <th
+                                            class="sorting"
+                                            tabindex="0"
+                                            aria-controls="DataTables_Table_0"
+                                            rowspan="1"
+                                            colspan="1"
+                                            style="width: 103px"
+                                            aria-label="Status: activate to sort column ascending"
+                                        >
+                                            FECHA DE FIN
+                                        </th>
+
                                         <th
                                             class="sorting_disabled"
                                             rowspan="1"
@@ -232,8 +283,8 @@
                             </table>
                         </div>
 
-                        <!--Paginacion-->
-                        <div class="d-flex justify-content-between row">
+
+                        <!-- <div class="d-flex justify-content-between row">
                             <div class="col-sm-12 col-md-6"></div>
                             <div class="col-sm-12 col-md-6">
                                 <div
@@ -355,7 +406,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -369,18 +420,13 @@ export default {
         return {
             USUARIOS: [],
             IMPORT: [],
-
-
         };
     },
     mounted() {
         this.listarUsuarios();
-
-
     },
 
     methods: {
-
         async listarUsuarios() {
             this.USUARIOS = await (
                 await axios.get("/api/user")
@@ -389,12 +435,9 @@ export default {
         },
 
         async SaveExcelUser() {
+            const datas = document.getElementsByClassName("file");
 
-            const datas = document.getElementsByClassName('file');
-
-            this.IMPORT = await (
-                await axios.post("/api/importuser",datas).data
-            );
+            this.IMPORT = await await axios.post("/api/importuser", datas).data;
             console.log(this.IMPORT);
         },
     },

@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Resources\User\UserGCollection;
 
+
 class UserController extends Controller
 {
 
@@ -44,11 +45,13 @@ class UserController extends Controller
     public function saveExcelUsers(Request $request)
     {
 
-        Excel::import(
-            new UsersImport,
-            $request->file('file')->store('file')
-        );
-        return redirect()->back();
+    //    Excel::import(new UsersImport,$request->file('usuarios'));
+
+        $usuarios = (new UsersImport)->toArray($request->file("usuarios"));
+
+    //    return 'success';
+
+
     }
 
 
