@@ -44,14 +44,13 @@ class UserController extends Controller
     }
     public function saveExcelUsers(Request $request)
     {
-
-    //    Excel::import(new UsersImport,$request->file('usuarios'));
-
-        $usuarios = (new UsersImport)->toArray($request->file("usuarios"));
-        return response()->json([   'user'=>$usuarios],200);
-
-
-
+        try{            
+            Excel::import(new UsersImport,$request->file('file'));
+            //$usuarios = (new UsersImport)->toArray($request->file("files"));
+            return response()->json("Import success",200);
+        }catch ( \Exception $e){
+            return response()->json($e->getMessage(),200);
+        }
     }
 
 

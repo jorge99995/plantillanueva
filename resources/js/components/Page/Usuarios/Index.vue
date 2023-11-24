@@ -49,6 +49,7 @@
                                         <input
                                             type="file"
                                             class="form-control"
+                                            @change="file_excel=$event"
                                             id="usuarios"
                                             name="usuarios"
                                             aria-describedby="inputGroupFileAddon04"
@@ -422,6 +423,7 @@ export default {
         return {
             USUARIOS: [],
             IMPORT: [],
+            file_excel:null
         };
     },
     mounted() {
@@ -437,10 +439,19 @@ export default {
         },
 
         async SaveExcelUser() {
-
-
-            this.IMPORT = await await axios.post("/api/importuser");
-            console.log(this.IMPORT);
+            //;
+            const file = this.file_excel.target.files[0]
+            const form = new FormData()
+            form.append('file',file)
+            try{
+                const resp = await(await axios.post("/api/importuser",form))
+                console.log("resp",resp)
+                this.listarUsuarios();
+                alert('Termino el import')
+            }catch(err){
+                alert(err)
+                console.log(" err", this.IMPORT)
+            }
         },
     },
 };
