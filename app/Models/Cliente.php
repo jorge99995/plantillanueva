@@ -29,5 +29,7 @@ class Cliente extends Model
         'nota',
     ];
     protected $primaryKey = 'id';
+
+    protected $table = 'cliente';
     public $timestamps = false;
 }

@@ -21,7 +21,7 @@ class ClienteImport implements ToModel, WithHeadingRow
         //     throw new \Exception('Alguno de los campos requeridos está vacío ');
         // }
 
-
+        
         return new Cliente([
             'nombres' => $row['nombres'],
             'dni'=> $row['dni'],
@@ -32,13 +32,17 @@ class ClienteImport implements ToModel, WithHeadingRow
             'ciudad'=> $row['ciudad'],
             'codigo'=> $row['codigo'],
             'registro' => $row['registro'],
-            'fecha_emision' =>$row['fecha_emision'],
+            'fecha_emision' =>  $this->getConvertDate($row['fecha_emision']),
             'horas_lectivas' => $row['horas_lectivas'],
-            'fecha_inicio' =>( $row['fecha_inicio']),
-            'fecha_fin' => $row['fecha_fin'],
+            'fecha_inicio' =>  $this->getConvertDate($row['fecha_inicio']),
+            'fecha_fin' =>$this->getConvertDate($row['fecha_fin']),
             'tema_curso' => $row['tema_curso'],
             'nota' => $row['nota'],
         ]);
+    }
+
+    public function getConvertDate(string $excelData){
+        return date("Y-m-d", strtotime("1899-12-30 +{$excelData} days"));
     }
 }
 

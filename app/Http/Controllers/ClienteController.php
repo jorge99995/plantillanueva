@@ -68,7 +68,7 @@ class ClienteController extends Controller
     public function saveExcelCliente(Request $request)
     {
         try{
-            Excel::import(new ClienteImport,$request->file('file'));
+            Excel::import(new ClienteImport,$request->file('file')); 
             //$usuarios = (new UsersImport)->toArray($request->file("files"));
 
             return response()->json("Import success",200);

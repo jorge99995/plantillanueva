@@ -61,7 +61,7 @@
                                             class="btn btn-outline-primary"
                                             type="button"
                                             name="usuarios"
-                                            @click.prevent="displayModal = true"
+                                            @click.prevent="displayModal = true,SaveExcelUser()"
                                         >
                                             <span
                                                 ><i
