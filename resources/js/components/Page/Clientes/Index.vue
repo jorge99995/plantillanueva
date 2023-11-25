@@ -15,7 +15,9 @@
                     <div class="dataTables_wrapper dt-bootstrap5 no-footer">
                         <div class="card-header">
                             <div class="head-label text-start col-lg-12">
-                                <h5 class="card-title mb-0">LISTA DE CURSOS</h5>
+                                <h5 class="card-title mb-0">
+                                    LISTA DE CLIENTES
+                                </h5>
                             </div>
                         </div>
 
@@ -49,7 +51,7 @@
                                         <input
                                             type="file"
                                             class="form-control"
-                                            @change="file_excel=$event"
+                                            @change="file_excel = $event"
                                             id="usuarios"
                                             name="usuarios"
                                             aria-describedby="inputGroupFileAddon04"
@@ -59,7 +61,7 @@
                                             class="btn btn-outline-primary"
                                             type="button"
                                             name="usuarios"
-                                            @click="SaveExcelUser()"
+                                            @click.prevent="displayModal = true"
                                         >
                                             <span
                                                 ><i
@@ -75,7 +77,6 @@
                                     <br />
                                     <button
                                         class="dt-button btn btn-primary"
-                                        tabindex="0"
                                         type="button"
                                     >
                                         <span
@@ -98,17 +99,15 @@
                                 <thead>
                                     <tr>
                                         <th
-                                            class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all"
+                                            class="sorting"
+                                            tabindex="0"
+                                            aria-controls="DataTables_Table_0"
                                             rowspan="1"
                                             colspan="1"
-                                            style="width: 18px"
-                                            data-col="1"
-                                            aria-label=""
+                                            style="width: 237px"
+                                            aria-label="Name: activate to sort column ascending"
                                         >
-                                            <input
-                                                type="checkbox"
-                                                class="form-check-input"
-                                            />
+                                            ID
                                         </th>
                                         <th
                                             class="sorting"
@@ -119,7 +118,7 @@
                                             style="width: 237px"
                                             aria-label="Name: activate to sort column ascending"
                                         >
-                                            NOMBRE DEL CURSO
+                                            NOMBRES Y APELLIDOS
                                         </th>
                                         <th
                                             class="sorting"
@@ -200,7 +199,7 @@
                                             style="width: 103px"
                                             aria-label="Status: activate to sort column ascending"
                                         >
-                                            FECHA DE FIN
+                                            HORAS LECTIVAS
                                         </th>
 
                                         <th
@@ -215,59 +214,17 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
-                                    <tr v-for="item in USUARIOS" :key="item.id">
-                                        <td class="dt-checkboxes-cell">
-                                            <input
-                                                type="checkbox"
-                                                class="dt-checkboxes form-check-input"
-                                            />
-                                        </td>
-                                        <td>
-                                            <div
-                                                class="d-flex justify-content-start align-items-center"
-                                            >
-                                                <div class="avatar-wrapper">
-                                                    <div class="avatar me-2">
-                                                        <span
-                                                            class="avatar-initial rounded-circle bg-label-danger"
-                                                        >
-                                                            <img
-                                                                src="img/avatars/5.png"
-                                                                alt="Avatar"
-                                                                class="rounded-circle"
-                                                        /></span>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-column">
-                                                    <span
-                                                        class="emp_name text-truncate"
-                                                        >{{
-                                                            item.name +
-                                                            " " +
-                                                            item.surname
-                                                        }}</span
-                                                    ><small
-                                                        class="emp_post text-truncate text-muted"
-                                                        >{{ item.email }}</small
-                                                    >
-                                                </div>
-                                            </div>
-                                        </td>
+                                    <tr v-for="item in CLIENTES" :key="item.id">
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.nombres }}</td>
+                                        <td>{{ item.dni }}</td>
+                                        <td>{{ item.celular }}</td>
+                                        <td>{{ item.correo }}</td>
+                                        <td>{{ item.codigo }}</td>
+                                        <td>{{ item.registro }}</td>
+                                        <td>{{ item.fecha_emision }}</td>
+                                        <td>{{ item.horas_lectivas }}</td>
 
-                                        <td>{{ item.role.name }}</td>
-                                        <td>{{ item.created_at }}</td>
-                                        <td>
-                                            <span
-                                                class="badge bg-label-primary me-1"
-                                                v-if="item.state == 1"
-                                                >Activo</span
-                                            >
-                                            <span
-                                                class="badge bg-label-danger me-1"
-                                                v-if="item.state == 2"
-                                                >Des-Activo</span
-                                            >
-                                        </td>
                                         <td>
                                             <a
                                                 href=""
@@ -286,184 +243,152 @@
                             </table>
                         </div>
 
-
-                        <!-- <div class="d-flex justify-content-between row">
+                        <div class="d-flex justify-content-between row">
                             <div class="col-sm-12 col-md-6"></div>
                             <div class="col-sm-12 col-md-6">
-                                <div
-                                    class="dataTables_paginate paging_simple_numbers"
-                                    id="DataTables_Table_0_paginate"
-                                >
-                                    <ul class="pagination">
-                                        <li
-                                            class="paginate_button page-item previous disabled"
-                                            id="DataTables_Table_0_previous"
-                                        >
-                                            <a
-                                                aria-controls="DataTables_Table_0"
-                                                aria-disabled="true"
-                                                role="link"
-                                                data-dt-idx="previous"
-                                                tabindex="0"
-                                                class="page-link"
-                                                >Previous</a
-                                            >
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination pagination-lg">
+                                        <li class="page-item prev">
+
+                                            <a class="page-link"  @click.prevent="changePage(pagination.current_page -1)"
+                                                ><i
+                                                    class="tf-icon bx bx-chevrons-left"
+                                                ></i
+                                            ></a>
                                         </li>
-                                        <li
-                                            class="paginate_button page-item active"
-                                        >
-                                            <a
-                                                href="#"
-                                                aria-controls="DataTables_Table_0"
-                                                role="link"
-                                                aria-current="page"
-                                                data-dt-idx="0"
-                                                tabindex="0"
-                                                class="page-link"
-                                                >1</a
-                                            >
+                                        <!-- <li class="page-item">
+                                            <a class="page-link">1</a>
+                                        </li> -->
+                                        <!-- <li class="page-item">
+                                        <a class="page-link" >2</a>
+                                      </li>
+                                      <li class="page-item active">
+                                        <a class="page-link" >3</a>
+                                      </li>
+                                      <li class="page-item">
+                                        <a class="page-link" >4</a>
+                                      </li> -->
+                                        <li class="page-item" v-for="page in pagesNumber" v-bind:class="[ page== isActived ?  'active' : '']" >
+                                            <a class="page-link"  @click.prevent="changePage(page)">{{page}}</a>
                                         </li>
-                                        <li class="paginate_button page-item">
-                                            <a
-                                                href="#"
-                                                aria-controls="DataTables_Table_0"
-                                                role="link"
-                                                data-dt-idx="1"
-                                                tabindex="0"
-                                                class="page-link"
-                                                >2</a
-                                            >
-                                        </li>
-                                        <li class="paginate_button page-item">
-                                            <a
-                                                href="#"
-                                                aria-controls="DataTables_Table_0"
-                                                role="link"
-                                                data-dt-idx="2"
-                                                tabindex="0"
-                                                class="page-link"
-                                                >3</a
-                                            >
-                                        </li>
-                                        <li class="paginate_button page-item">
-                                            <a
-                                                href="#"
-                                                aria-controls="DataTables_Table_0"
-                                                role="link"
-                                                data-dt-idx="3"
-                                                tabindex="0"
-                                                class="page-link"
-                                                >4</a
-                                            >
-                                        </li>
-                                        <li class="paginate_button page-item">
-                                            <a
-                                                href="#"
-                                                aria-controls="DataTables_Table_0"
-                                                role="link"
-                                                data-dt-idx="4"
-                                                tabindex="0"
-                                                class="page-link"
-                                                >5</a
-                                            >
-                                        </li>
-                                        <li
-                                            class="paginate_button page-item disabled"
-                                            id="DataTables_Table_0_ellipsis"
-                                        >
-                                            <a
-                                                aria-controls="DataTables_Table_0"
-                                                aria-disabled="true"
-                                                role="link"
-                                                data-dt-idx="ellipsis"
-                                                tabindex="0"
-                                                class="page-link"
-                                                >…</a
-                                            >
-                                        </li>
-                                        <li class="paginate_button page-item">
-                                            <a
-                                                href="#"
-                                                aria-controls="DataTables_Table_0"
-                                                role="link"
-                                                data-dt-idx="14"
-                                                tabindex="0"
-                                                class="page-link"
-                                                >15</a
-                                            >
-                                        </li>
-                                        <li
-                                            class="paginate_button page-item next"
-                                            id="DataTables_Table_0_next"
-                                        >
-                                            <a
-                                                href="#"
-                                                aria-controls="DataTables_Table_0"
-                                                role="link"
-                                                data-dt-idx="next"
-                                                tabindex="0"
-                                                class="page-link"
-                                                >Next</a
-                                            >
+                                        <!-- <li class="page-item next" ion-lg"> -->
+                                        <li class="page-item prev">
+                                            <a class="page-link"  @click.prevent="changePage(pagination.current_page +1)"
+                                                ><i
+                                                    class="tf-icon bx bx-chevrons-right"
+                                                ></i
+                                            ></a>
                                         </li>
                                     </ul>
-                                </div>
+                                </nav>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <create>
-
-
-        </create>
     </div>
-
 </template>
 
 <script>
-import Create from './Create.vue';
 export default {
     data() {
         return {
-            USUARIOS: [],
+            CLIENTES: [],
             IMPORT: [],
-            file_excel:null
+            file_excel: null,
+            displayModal: false,
+
+            pageNumber: 0,
+            prePage: 5,
+            pagination: {
+                total: 0,
+                current_page: 0,
+                last_Page: 0,
+                from: 0,
+                to: 0,
+            },
+            offset:3
         };
     },
-    components:{
-        Create
-    }
-    ,
+
     mounted() {
-        this.listarUsuarios();
+        this.listarClientes();
+    },
+
+    computed: {
+        isActived: function () {
+            return this.pagination.current_page;
+            console.log(this.pagination.current_page);
+        },
+
+        pagesNumber: function(){
+            if (!this.pagination.to) {
+                return [];
+            }
+
+            var from = this.pagination.current_page - this.offset;
+
+            if (from < 1) {
+                from = 1 ;
+            }//todo
+
+            var to = from + ( this.offset * 2);
+
+            if (to >= this.pagination.last_Page) {
+                to = this.pagination.last_Page;
+            }
+
+            var pagesArray = [];
+            while (from <=to) {
+                pagesArray.push(from);
+                from++;
+            }
+
+            return pagesArray;
+        }
     },
 
     methods: {
-        async listarUsuarios() {
-            this.USUARIOS = await (
-                await axios.get("/api/user")
-            ).data.users.data;
-            // console.log(this.USUARIOS);
+        async listarClientes(page) {
+            this.CLIENTES = await (
+                await axios.get("/api/cliente?page="+ page)
+            ).data.clientes.data;
+
+            this.pagination = await (
+                await axios.get("/api/cliente")
+            ).data.pagination;
+            console.log(this.CLIENTES);
+            console.log(this.pagination);
         },
 
+        openModal() {
+            this.displayModal = true;
+            console.log(this.displayModal);
+        },
+        closeModal() {
+            this.displayModal = false;
+        },
         async SaveExcelUser() {
             //;
-            const file = this.file_excel.target.files[0]
-            const form = new FormData()
-            form.append('file',file)
-            try{
-                const resp = await(await axios.post("/api/importuser",form))
-                console.log("resp",resp)
-                this.listarUsuarios();
-                alert('Termino el import')
-            }catch(err){
-                alert(err)
-                console.log(" err", this.IMPORT)
+            const file = this.file_excel.target.files[0];
+            const form = new FormData();
+            form.append("file", file);
+            try {
+                const resp = await await axios.post("/api/clienteimport", form);
+                console.log("resp", resp);
+                this.listarClientes();
+                alert("Termino el import");
+            } catch (err) {
+                alert(err);
+                // console.log(" err", this.IMPORT)
             }
         },
+
+        changePage(page){
+            this.pagination.current_page = page;
+            this.listarClientes(page);
+        }
     },
 };
 </script>

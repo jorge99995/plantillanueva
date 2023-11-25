@@ -64,7 +64,6 @@
                 </ul>
             </li>
 
-            <!--GESTION DE CATEGORIAS -->
 
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">GESTIÓN DE CATEGORIAS</span>
@@ -73,35 +72,42 @@
             <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-category"></i>
-                    <div data-i18n="Account Settings">Categorias</div>
+                    <div data-i18n="Account Settings">CATEGORIAS</div>
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a
-                            href="pages-account-settings-account.html"
-                            class="menu-link"
-                        >
+                        <router-link to="/categorias" class="menu-link">
+
                             <div data-i18n="Account">Lista de Categorias</div>
-                        </a>
+                        </router-link>
                     </li>
                 </ul>
             </li>
+
+
+            <!--GESTION DE CLIENTES -->
+
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">GESTIÓN DE CLIENTES</span>
+            </li>
+
             <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons bx bxs-book-content"></i>
-                    <div data-i18n="Authentications">Cursos</div>
+                    <i class="menu-icon tf-icons bx bx-category"></i>
+                    <div data-i18n="Account Settings">CLIENTES</div>
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a
-                            href="pages-account-settings-account.html"
-                            class="menu-link"
-                        >
-                            <div data-i18n="Account">Lista de Cursos</div>
-                        </a>
+                        <router-link to="/clientes" class="menu-link">
+
+                            <div data-i18n="Account">Lista de Clientes</div>
+                        </router-link>
                     </li>
                 </ul>
             </li>
+
+
+
         </ul>
     </aside>
 </template>

@@ -1,5 +1,13 @@
 <template lang="">
-    <div class="modal fade" id="modalLong" tabindex="-1" aria-hidden="true" modal="true">
+    <div
+        class="modal fade"
+        id="modalLong"
+        tabindex="-1"
+        aria-hidden="true"
+        modal="true"
+        v-if="openClose"
+        style="display: block"
+    >
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -103,6 +111,7 @@
                         type="button"
                         class="btn btn-outline-secondary"
                         data-bs-dismiss="modal"
+                        @click="openCloseFun()"
                     >
                         Close
                     </button>
@@ -114,3 +123,34 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    props: {
+        visible: Boolean,
+        variant: String,
+    },
+
+    data() {
+        return {
+            openClose: this.visible,
+        };
+    },
+    methods: {
+        openCloseFun() {
+            this.openClose = !this.openClose;
+        },
+
+        close() {
+            this.$emit("close");
+        },
+    },
+
+    watch: {
+        visible: function (newval, oldval) {
+            this.openClose = newval;
+            console.log("new" + newval + "==" + "" + oldval);
+        },
+    },
+};
+</script>
