@@ -52,6 +52,7 @@
                                     <button
                                         class="dt-button btn btn-primary"
                                         type="button"
+                                        @click="showModal()"
                                     >
                                         <span
                                             ><i class="bx bx-plus me-1"></i>
@@ -149,54 +150,92 @@
 
 
     </div>
+
+    <div class="modal  " v-bind:class="{ mostrar: modalShow }" >
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalScrollableTitle">AGREGAR CATEGORIA</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                @click="closeModal()"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating">
+                    <input
+                      type="text"
+                      class="form-control"
+
+                      placeholder="John Doe"
+                      aria-describedby="floatingInputHelp" />
+                    <label for="floatingInput">Nombre de la categoria</label>
+
+                  </div>
+                  <br>
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      class="form-control"
+
+                      placeholder="John Doe"
+                      aria-describedby="floatingInputHelp" />
+                    <label for="floatingInput">Nombre del Curso</label>
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="formFileMultiple" class="form-label">Seleccionar archivo a exportar</label>
+                    <input class="form-control" type="file" id="formFileMultiple" multiple />
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" @click="closeModal()">
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 </template>
 
 <script>
 export default {
     data() {
         return {
-            CLIENTES: [],
-            IMPORT: [],
-            file_excel: null,
-            displayModal: false,
+
+            modalShow: false,
         };
     },
 
     mounted() {
-        this.listarClientes();
+
     },
 
     methods: {
-        async listarClientes() {
-            this.CLIENTES = await (
-                await axios.get("/api/cliente")
-            ).data.clientes.data;
-            console.log(this.CLIENTES);
+        showModal() {
+            // v form reset
+
+            this.modalShow = true;
         },
 
-        openModal() {
-            this.displayModal = true;
-            console.log(this.displayModal);
-        },
         closeModal() {
-            this.displayModal = false;
+            // v form reset
+            // $("#exampleModal").modal("show"); /
+            this.modalShow = false;
         },
-        async SaveExcelUser() {
-            //;
-            const file = this.file_excel.target.files[0];
-            const form = new FormData();
-            form.append("file", file);
-            try {
-                const resp = await await axios.post("/api/clienteimport", form);
-                console.log("resp", resp);
-                this.listarClientes();
-                alert("Termino el import");
-            } catch (err) {
-                alert(err);
-                // console.log(" err", this.IMPORT)
-            }
-        },
+
     },
 };
 </script>
-<!--  -->
+<style>
+.mostrar {
+    display: list-item;
+
+}
+
+</style>
