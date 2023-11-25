@@ -350,9 +350,9 @@ export default {
     },
 
     methods: {
-        async listarClientes(page) {
+        async listarClientes() {
             this.CLIENTES = await (
-                await axios.get("/api/cliente?page="+ page)
+                await axios.get("/api/cliente")
             ).data.clientes.data;
 
             this.pagination = await (

@@ -19927,14 +19927,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
-    listarClientes: function listarClientes(page) {
+    listarClientes: function listarClientes() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios.get("/api/cliente?page=" + page);
+              return axios.get("/api/cliente");
             case 2:
               _context.next = 4;
               return _context.sent.data.clientes.data;
@@ -20030,7 +20030,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       USUARIOS: [],
       IMPORT: [],
-      file_excel: null
+      file_excel: null,
+      modalShow: false
     };
   },
   components: {
@@ -20040,6 +20041,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.listarUsuarios();
   },
   methods: {
+    showModal: function showModal() {
+      // v form reset
+      $("#exampleModal").modal("show"); // show modal
+    },
     listarUsuarios: function listarUsuarios() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -20070,7 +20075,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               //;
               file = _this2.file_excel.target.files[0];
               form = new FormData();
-              form.append('file', file);
+              form.append("file", file);
               _context2.prev = 3;
               _context2.next = 6;
               return axios.post("/api/importuser", form);
@@ -20081,7 +20086,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               resp = _context2.sent;
               console.log("resp", resp);
               _this2.listarUsuarios();
-              alert('Termino el import');
+              alert("Termino el import");
               _context2.next = 18;
               break;
             case 14:
@@ -20828,24 +20833,21 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Importar datos")], -1 /* HOISTED */);
 var _hoisted_13 = [_hoisted_12];
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "dt-button btn btn-primary",
-  tabindex: "0",
-  type: "button"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bx bx-plus me-1"
 }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "d-none d-lg-inline-block"
-}, "Agregar Nuevo Usuario")])], -1 /* HOISTED */);
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+}, "Agregar Nuevo Usuario")], -1 /* HOISTED */);
+var _hoisted_16 = [_hoisted_15];
 var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-var _hoisted_18 = {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+var _hoisted_19 = {
   "class": "table-responsive text-nowrap"
 };
-var _hoisted_19 = {
+var _hoisted_20 = {
   "class": "table border-top"
 };
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   "class": "sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all",
   rowspan: "1",
   colspan: "1",
@@ -20877,7 +20879,7 @@ var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
     "width": "225px"
   },
   "aria-label": "Email: activate to sort column ascending"
-}, " DNI "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+}, " ROLES "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   "class": "sorting",
   tabindex: "0",
   "aria-controls": "DataTables_Table_0",
@@ -20887,7 +20889,7 @@ var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
     "width": "75px"
   },
   "aria-label": "Date: activate to sort column ascending"
-}, " CELULAR "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+}, " FECHA "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   "class": "sorting",
   tabindex: "0",
   "aria-controls": "DataTables_Table_0",
@@ -20897,47 +20899,7 @@ var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
     "width": "103px"
   },
   "aria-label": "Status: activate to sort column ascending"
-}, " CORREO "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  "class": "sorting",
-  tabindex: "0",
-  "aria-controls": "DataTables_Table_0",
-  rowspan: "1",
-  colspan: "1",
-  style: {
-    "width": "103px"
-  },
-  "aria-label": "Status: activate to sort column ascending"
-}, " CODIGO "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  "class": "sorting",
-  tabindex: "0",
-  "aria-controls": "DataTables_Table_0",
-  rowspan: "1",
-  colspan: "1",
-  style: {
-    "width": "103px"
-  },
-  "aria-label": "Status: activate to sort column ascending"
-}, " REGISTRO "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  "class": "sorting",
-  tabindex: "0",
-  "aria-controls": "DataTables_Table_0",
-  rowspan: "1",
-  colspan: "1",
-  style: {
-    "width": "103px"
-  },
-  "aria-label": "Status: activate to sort column ascending"
-}, " FECHA DE EMISION "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  "class": "sorting",
-  tabindex: "0",
-  "aria-controls": "DataTables_Table_0",
-  rowspan: "1",
-  colspan: "1",
-  style: {
-    "width": "103px"
-  },
-  "aria-label": "Status: activate to sort column ascending"
-}, " FECHA DE FIN "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+}, " ESTADO "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   "class": "sorting_disabled",
   rowspan: "1",
   colspan: "1",
@@ -20946,19 +20908,19 @@ var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   },
   "aria-label": "Actions"
 }, " ACCIONES ")])], -1 /* HOISTED */);
-var _hoisted_21 = {
+var _hoisted_22 = {
   "class": "table-border-bottom-0"
 };
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
   "class": "dt-checkboxes-cell"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
   type: "checkbox",
   "class": "dt-checkboxes form-check-input"
 })], -1 /* HOISTED */);
-var _hoisted_23 = {
+var _hoisted_24 = {
   "class": "d-flex justify-content-start align-items-center"
 };
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "avatar-wrapper"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "avatar me-2"
@@ -20969,24 +20931,24 @@ var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   alt: "Avatar",
   "class": "rounded-circle"
 })])])], -1 /* HOISTED */);
-var _hoisted_25 = {
+var _hoisted_26 = {
   "class": "d-flex flex-column"
 };
-var _hoisted_26 = {
+var _hoisted_27 = {
   "class": "emp_name text-truncate"
 };
-var _hoisted_27 = {
+var _hoisted_28 = {
   "class": "emp_post text-truncate text-muted"
 };
-var _hoisted_28 = {
+var _hoisted_29 = {
   key: 0,
   "class": "badge bg-label-primary me-1"
 };
-var _hoisted_29 = {
+var _hoisted_30 = {
   key: 1,
   "class": "badge bg-label-danger me-1"
 };
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "",
   "class": "btn btn-sm btn-icon"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
@@ -20997,9 +20959,42 @@ var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bx bxs-edit"
 })])], -1 /* HOISTED */);
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "modal fade",
+  id: "exampleModal",
+  tabindex: "-1",
+  role: "dialog",
+  "aria-labelledby": "exampleModalLabel",
+  "aria-hidden": "true"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "modal-dialog",
+  role: "document"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "modal-content"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "modal-header"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
+  "class": "modal-title",
+  id: "modalLongTitle"
+}, " Modal title "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  type: "button",
+  "class": "btn-close",
+  "data-bs-dismiss": "modal",
+  "aria-label": "Close"
+})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "modal-body"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "modal-footer"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  type: "button",
+  "class": "btn btn-outline-secondary",
+  "data-bs-dismiss": "modal"
+}, " Close "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  type: "button",
+  "class": "btn btn-primary"
+}, " Save changes ")])])])], -1 /* HOISTED */);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_create = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("create");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "file",
     "class": "form-control",
@@ -21017,11 +21012,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.SaveExcelUser();
     })
-  }, _hoisted_13)]), _hoisted_14, _hoisted_15])])]), _hoisted_16, _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Tabla"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_21, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.USUARIOS, function (item) {
+  }, _hoisted_13)]), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "dt-button btn btn-primary",
+    type: "button",
+    "data-target": "#exampleModal",
+    onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.showModal && $options.showModal.apply($options, arguments);
+    }, ["prevent"]))
+  }, _hoisted_16)])])]), _hoisted_17, _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Tabla"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_22, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.USUARIOS, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: item.id
-    }, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name + " " + item.surname), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.email), 1 /* TEXT */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.role.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [item.state == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_28, "Activo")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), item.state == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_29, "Des-Activo")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_30]);
-  }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"d-flex justify-content-between row\">\n                            <div class=\"col-sm-12 col-md-6\"></div>\n                            <div class=\"col-sm-12 col-md-6\">\n                                <div\n                                    class=\"dataTables_paginate paging_simple_numbers\"\n                                    id=\"DataTables_Table_0_paginate\"\n                                >\n                                    <ul class=\"pagination\">\n                                        <li\n                                            class=\"paginate_button page-item previous disabled\"\n                                            id=\"DataTables_Table_0_previous\"\n                                        >\n                                            <a\n                                                aria-controls=\"DataTables_Table_0\"\n                                                aria-disabled=\"true\"\n                                                role=\"link\"\n                                                data-dt-idx=\"previous\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >Previous</a\n                                            >\n                                        </li>\n                                        <li\n                                            class=\"paginate_button page-item active\"\n                                        >\n                                            <a\n                                                href=\"#\"\n                                                aria-controls=\"DataTables_Table_0\"\n                                                role=\"link\"\n                                                aria-current=\"page\"\n                                                data-dt-idx=\"0\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >1</a\n                                            >\n                                        </li>\n                                        <li class=\"paginate_button page-item\">\n                                            <a\n                                                href=\"#\"\n                                                aria-controls=\"DataTables_Table_0\"\n                                                role=\"link\"\n                                                data-dt-idx=\"1\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >2</a\n                                            >\n                                        </li>\n                                        <li class=\"paginate_button page-item\">\n                                            <a\n                                                href=\"#\"\n                                                aria-controls=\"DataTables_Table_0\"\n                                                role=\"link\"\n                                                data-dt-idx=\"2\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >3</a\n                                            >\n                                        </li>\n                                        <li class=\"paginate_button page-item\">\n                                            <a\n                                                href=\"#\"\n                                                aria-controls=\"DataTables_Table_0\"\n                                                role=\"link\"\n                                                data-dt-idx=\"3\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >4</a\n                                            >\n                                        </li>\n                                        <li class=\"paginate_button page-item\">\n                                            <a\n                                                href=\"#\"\n                                                aria-controls=\"DataTables_Table_0\"\n                                                role=\"link\"\n                                                data-dt-idx=\"4\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >5</a\n                                            >\n                                        </li>\n                                        <li\n                                            class=\"paginate_button page-item disabled\"\n                                            id=\"DataTables_Table_0_ellipsis\"\n                                        >\n                                            <a\n                                                aria-controls=\"DataTables_Table_0\"\n                                                aria-disabled=\"true\"\n                                                role=\"link\"\n                                                data-dt-idx=\"ellipsis\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >…</a\n                                            >\n                                        </li>\n                                        <li class=\"paginate_button page-item\">\n                                            <a\n                                                href=\"#\"\n                                                aria-controls=\"DataTables_Table_0\"\n                                                role=\"link\"\n                                                data-dt-idx=\"14\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >15</a\n                                            >\n                                        </li>\n                                        <li\n                                            class=\"paginate_button page-item next\"\n                                            id=\"DataTables_Table_0_next\"\n                                        >\n                                            <a\n                                                href=\"#\"\n                                                aria-controls=\"DataTables_Table_0\"\n                                                role=\"link\"\n                                                data-dt-idx=\"next\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >Next</a\n                                            >\n                                        </li>\n                                    </ul>\n                                </div>\n                            </div>\n                        </div> ")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_create)]);
+    }, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name + " " + item.surname), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.email), 1 /* TEXT */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.role.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [item.state == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_29, "Activo")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), item.state == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_30, "Des-Activo")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_31]);
+  }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"d-flex justify-content-between row\">\n                            <div class=\"col-sm-12 col-md-6\"></div>\n                            <div class=\"col-sm-12 col-md-6\">\n                                <div\n                                    class=\"dataTables_paginate paging_simple_numbers\"\n                                    id=\"DataTables_Table_0_paginate\"\n                                >\n                                    <ul class=\"pagination\">\n                                        <li\n                                            class=\"paginate_button page-item previous disabled\"\n                                            id=\"DataTables_Table_0_previous\"\n                                        >\n                                            <a\n                                                aria-controls=\"DataTables_Table_0\"\n                                                aria-disabled=\"true\"\n                                                role=\"link\"\n                                                data-dt-idx=\"previous\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >Previous</a\n                                            >\n                                        </li>\n                                        <li\n                                            class=\"paginate_button page-item active\"\n                                        >\n                                            <a\n                                                href=\"#\"\n                                                aria-controls=\"DataTables_Table_0\"\n                                                role=\"link\"\n                                                aria-current=\"page\"\n                                                data-dt-idx=\"0\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >1</a\n                                            >\n                                        </li>\n                                        <li class=\"paginate_button page-item\">\n                                            <a\n                                                href=\"#\"\n                                                aria-controls=\"DataTables_Table_0\"\n                                                role=\"link\"\n                                                data-dt-idx=\"1\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >2</a\n                                            >\n                                        </li>\n                                        <li class=\"paginate_button page-item\">\n                                            <a\n                                                href=\"#\"\n                                                aria-controls=\"DataTables_Table_0\"\n                                                role=\"link\"\n                                                data-dt-idx=\"2\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >3</a\n                                            >\n                                        </li>\n                                        <li class=\"paginate_button page-item\">\n                                            <a\n                                                href=\"#\"\n                                                aria-controls=\"DataTables_Table_0\"\n                                                role=\"link\"\n                                                data-dt-idx=\"3\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >4</a\n                                            >\n                                        </li>\n                                        <li class=\"paginate_button page-item\">\n                                            <a\n                                                href=\"#\"\n                                                aria-controls=\"DataTables_Table_0\"\n                                                role=\"link\"\n                                                data-dt-idx=\"4\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >5</a\n                                            >\n                                        </li>\n                                        <li\n                                            class=\"paginate_button page-item disabled\"\n                                            id=\"DataTables_Table_0_ellipsis\"\n                                        >\n                                            <a\n                                                aria-controls=\"DataTables_Table_0\"\n                                                aria-disabled=\"true\"\n                                                role=\"link\"\n                                                data-dt-idx=\"ellipsis\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >…</a\n                                            >\n                                        </li>\n                                        <li class=\"paginate_button page-item\">\n                                            <a\n                                                href=\"#\"\n                                                aria-controls=\"DataTables_Table_0\"\n                                                role=\"link\"\n                                                data-dt-idx=\"14\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >15</a\n                                            >\n                                        </li>\n                                        <li\n                                            class=\"paginate_button page-item next\"\n                                            id=\"DataTables_Table_0_next\"\n                                        >\n                                            <a\n                                                href=\"#\"\n                                                aria-controls=\"DataTables_Table_0\"\n                                                role=\"link\"\n                                                data-dt-idx=\"next\"\n                                                tabindex=\"0\"\n                                                class=\"page-link\"\n                                                >Next</a\n                                            >\n                                        </li>\n                                    </ul>\n                                </div>\n                            </div>\n                        </div> ")])])])]), _hoisted_32]);
 }
 
 /***/ }),

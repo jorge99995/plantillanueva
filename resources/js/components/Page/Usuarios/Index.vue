@@ -49,7 +49,7 @@
                                         <input
                                             type="file"
                                             class="form-control"
-                                            @change="file_excel=$event"
+                                            @change="file_excel = $event"
                                             id="usuarios"
                                             name="usuarios"
                                             aria-describedby="inputGroupFileAddon04"
@@ -75,8 +75,9 @@
                                     <br />
                                     <button
                                         class="dt-button btn btn-primary"
-                                        tabindex="0"
                                         type="button"
+                                        data-target="#exampleModal"
+                                        @click.prevent="showModal"
                                     >
                                         <span
                                             ><i class="bx bx-plus me-1"></i>
@@ -130,7 +131,7 @@
                                             style="width: 225px"
                                             aria-label="Email: activate to sort column ascending"
                                         >
-                                            DNI
+                                            ROLES
                                         </th>
                                         <th
                                             class="sorting"
@@ -141,7 +142,7 @@
                                             style="width: 75px"
                                             aria-label="Date: activate to sort column ascending"
                                         >
-                                            CELULAR
+                                            FECHA
                                         </th>
 
                                         <th
@@ -153,54 +154,7 @@
                                             style="width: 103px"
                                             aria-label="Status: activate to sort column ascending"
                                         >
-                                            CORREO
-                                        </th>
-
-                                        <th
-                                            class="sorting"
-                                            tabindex="0"
-                                            aria-controls="DataTables_Table_0"
-                                            rowspan="1"
-                                            colspan="1"
-                                            style="width: 103px"
-                                            aria-label="Status: activate to sort column ascending"
-                                        >
-                                            CODIGO
-                                        </th>
-
-                                        <th
-                                            class="sorting"
-                                            tabindex="0"
-                                            aria-controls="DataTables_Table_0"
-                                            rowspan="1"
-                                            colspan="1"
-                                            style="width: 103px"
-                                            aria-label="Status: activate to sort column ascending"
-                                        >
-                                            REGISTRO
-                                        </th>
-                                        <th
-                                            class="sorting"
-                                            tabindex="0"
-                                            aria-controls="DataTables_Table_0"
-                                            rowspan="1"
-                                            colspan="1"
-                                            style="width: 103px"
-                                            aria-label="Status: activate to sort column ascending"
-                                        >
-                                            FECHA DE EMISION
-                                        </th>
-
-                                        <th
-                                            class="sorting"
-                                            tabindex="0"
-                                            aria-controls="DataTables_Table_0"
-                                            rowspan="1"
-                                            colspan="1"
-                                            style="width: 103px"
-                                            aria-label="Status: activate to sort column ascending"
-                                        >
-                                            FECHA DE FIN
+                                            ESTADO
                                         </th>
 
                                         <th
@@ -285,7 +239,6 @@
                                 </tbody>
                             </table>
                         </div>
-
 
                         <!-- <div class="d-flex justify-content-between row">
                             <div class="col-sm-12 col-md-6"></div>
@@ -415,33 +368,76 @@
             </div>
         </div>
 
-        <create>
-
-
-        </create>
+        <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLongTitle">
+                            Modal title
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Cras mattis consectetur purus sit amet fermentum.
+                            Cras justo odio, dapibus ac facilisis in, egestas
+                            eget quam. Morbi leo risus, porta ac consectetur ac,
+                            vestibulum at eros.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-outline-secondary"
+                            data-bs-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
 </template>
 
 <script>
-import Create from './Create.vue';
+import Create from "./Create.vue";
 export default {
     data() {
         return {
             USUARIOS: [],
             IMPORT: [],
-            file_excel:null
+            file_excel: null,
+            modalShow: false,
         };
     },
-    components:{
-        Create
-    }
-    ,
+    components: {
+        Create,
+    },
     mounted() {
         this.listarUsuarios();
     },
 
     methods: {
+        showModal() {
+            // v form reset
+            $("#exampleModal").modal("show"); // show modal
+        },
         async listarUsuarios() {
             this.USUARIOS = await (
                 await axios.get("/api/user")
@@ -451,17 +447,17 @@ export default {
 
         async SaveExcelUser() {
             //;
-            const file = this.file_excel.target.files[0]
-            const form = new FormData()
-            form.append('file',file)
-            try{
-                const resp = await(await axios.post("/api/importuser",form))
-                console.log("resp",resp)
+            const file = this.file_excel.target.files[0];
+            const form = new FormData();
+            form.append("file", file);
+            try {
+                const resp = await await axios.post("/api/importuser", form);
+                console.log("resp", resp);
                 this.listarUsuarios();
-                alert('Termino el import')
-            }catch(err){
-                alert(err)
-                console.log(" err", this.IMPORT)
+                alert("Termino el import");
+            } catch (err) {
+                alert(err);
+                console.log(" err", this.IMPORT);
             }
         },
     },
