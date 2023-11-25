@@ -77,7 +77,7 @@
                                         class="dt-button btn btn-primary"
                                         type="button"
                                         data-target="#exampleModal"
-                                        @click.prevent="showModal"
+                                        @click="showModal()"
                                     >
                                         <span
                                             ><i class="bx bx-plus me-1"></i>
@@ -368,14 +368,111 @@
             </div>
         </div>
 
-        <div
-            class="modal fade"
-            id="exampleModal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-        >
+
+        <div class="modal " v-bind:class="{ mostrar: modalShow }">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalScrollableTitle">Modal title</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    @click="closeModal() "
+                    ></button>
+                </div>
+                <div class="modal-body">
+                  <p>
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
+                    in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                  </p>
+                  <p>
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
+                    lacus vel augue laoreet rutrum faucibus dolor auctor.
+                  </p>
+                  <p>
+                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
+                    scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
+                    auctor fringilla.
+                  </p>
+                  <p>
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
+                    in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                  </p>
+                  <p>
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
+                    lacus vel augue laoreet rutrum faucibus dolor auctor.
+                  </p>
+                  <p>
+                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
+                    scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
+                    auctor fringilla.
+                  </p>
+                  <p>
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
+                    in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                  </p>
+                  <p>
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
+                    lacus vel augue laoreet rutrum faucibus dolor auctor.
+                  </p>
+                  <p>
+                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
+                    scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
+                    auctor fringilla.
+                  </p>
+                  <p>
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
+                    in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                  </p>
+                  <p>
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
+                    lacus vel augue laoreet rutrum faucibus dolor auctor.
+                  </p>
+                  <p>
+                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
+                    scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
+                    auctor fringilla.
+                  </p>
+                  <p>
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
+                    in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                  </p>
+                  <p>
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
+                    lacus vel augue laoreet rutrum faucibus dolor auctor.
+                  </p>
+                  <p>
+                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
+                    scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
+                    auctor fringilla.
+                  </p>
+                  <p>
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
+                    in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                  </p>
+                  <p>
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
+                    lacus vel augue laoreet rutrum faucibus dolor auctor.
+                  </p>
+                  <p>
+                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
+                    scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
+                    auctor fringilla.
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" @click="closeModal() ">
+                    Close
+                  </button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <!-- <div class="modal " v-bind:class="{ mostrar: modalShow }">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -387,6 +484,7 @@
                             class="btn-close"
                             data-bs-dismiss="modal"
                             aria-label="Close"
+                            @click="closeModal()"
                         ></button>
                     </div>
                     <div class="modal-body">
@@ -402,6 +500,7 @@
                             type="button"
                             class="btn btn-outline-secondary"
                             data-bs-dismiss="modal"
+                            @click="closeModal()"
                         >
                             Close
                         </button>
@@ -411,7 +510,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -436,8 +535,16 @@ export default {
     methods: {
         showModal() {
             // v form reset
-            $("#exampleModal").modal("show"); // show modal
+            // $("#exampleModal").modal("show"); /
+            this.modalShow = true;
         },
+
+        closeModal() {
+            // v form reset
+            // $("#exampleModal").modal("show"); /
+            this.modalShow = false;
+        },
+
         async listarUsuarios() {
             this.USUARIOS = await (
                 await axios.get("/api/user")
@@ -463,3 +570,9 @@ export default {
     },
 };
 </script>
+<style>
+.mostrar {
+    display: list-item;
+
+}
+</style>
